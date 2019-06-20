@@ -14,8 +14,10 @@ fi
 BEGIN_FOLD autogen
 if [[ $HOST = x86_64-linux-gnu ]]; then
   DOCKER_EXEC echo "skipping autogen for cmake build"
-else
+elif [ -n "$CONFIG_SHELL" ]; then
   DOCKER_EXEC "$CONFIG_SHELL" -c "./autogen.sh"
+else
+  DOCKER_EXEC ./autogen.sh
 fi
 END_FOLD
 
