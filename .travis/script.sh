@@ -28,7 +28,7 @@ BEGIN_FOLD configure
 if [[ $HOST = x86_64-linux-gnu ]]; then
   DOCKER_EXEC cmake ..
 else
-DOCKER_EXEC ./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( cat config.log && false)
+  DOCKER_EXEC ../configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( cat config.log && false)
 fi
 END_FOLD
 
@@ -36,21 +36,21 @@ BEGIN_FOLD distdir
 if [[ $HOST = x86_64-linux-gnu ]]; then
   DOCKER_EXEC echo "skipping make distdir"
 else
-DOCKER_EXEC make distdir VERSION=$HOST
+  DOCKER_EXEC make distdir VERSION=$HOST
 fi
 END_FOLD
 
 if [[ $HOST = x86_64-linux-gnu ]]; then
   DOCKER_EXEC echo "no distdir"
 else
-cd "devault-$HOST" || (echo "could not enter distdir devault-$HOST"; exit 1)
+  cd "devault-$HOST" || (echo "could not enter distdir devault-$HOST"; exit 1)
 fi
 
 BEGIN_FOLD configure
 if [[ $HOST = x86_64-linux-gnu ]]; then
   DOCKER_EXEC echo "already configured with cmake"
 else
-DOCKER_EXEC ./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( cat config.log && false)
+  DOCKER_EXEC ./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( cat config.log && false)
 fi
 END_FOLD
 
