@@ -189,7 +189,7 @@ public:
         consensus.powLimit = uint256S(
             "00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetSpacing = 2 * 15; // 30 seconds
-        consensus.nBlocksPerYear = 30 * 24 * 365.25; 
+        consensus.nBlocksPerYear = 2400; // 30 * 24 * 365.25; 
         consensus.nInitialMiningRewardInCoins = 500;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
@@ -229,7 +229,7 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         // DeVault seeder
-        vSeeds.emplace_back("69.172.229.236");
+        vSeeds.emplace_back("66.172.27.49");
         nExtCoinType = 1;
         cashaddrPrefix = "dvtest";
         cashaddrSecretPrefix = "testpriv"; // Shouldn't matter that "dv" isn't indicated
