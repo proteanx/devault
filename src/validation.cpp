@@ -1181,14 +1181,14 @@ bool CheckInputs(const CTransaction &tx, CValidationState &state,
       }
 
       bool check = CheckPrivateSigs(tx, inputs);
-      if (!check) {
+/*       if (!check) {
         // Refine this/do more flag checks?
         ScriptError scriptError = ScriptError::CHECKSIGVERIFY;
         return state.DoS(
                          100, false, REJECT_INVALID,
                          strprintf("bls-signature-verification-failed (%s)",
                                    ScriptErrorString(scriptError)));
-      }
+      } */
 
     } else {
         

@@ -5172,7 +5172,7 @@ CWallet::CreateWalletFromFile(const CChainParams &chainParams,
     // set walletInstance wallet flags to a default with EC keys but no BLS,blank,etc
     {
         if (walletInstance->nWalletMaxVersion < FEATURE_FLAGS) {
-            walletInstance->SetLegacyWalletFlags();
+            walletInstance->SetWalletBLS();
         }
       
         // Can happen on any run - do after loading WalletFlag from DB file & after potentially setting as Legacy
