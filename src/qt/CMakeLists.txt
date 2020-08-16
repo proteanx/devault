@@ -315,11 +315,6 @@ endif()
 target_compile_definitions(bitcoin-qt-base PUBLIC OBJC_OLD_DISPATCH_PROTOTYPES)
 
 
-# Windows support
-if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	target_sources(bitcoin-qt-base PRIVATE winshutdownmonitor.cpp)
-endif()
-
 target_include_directories(bitcoin-qt-base
 	PUBLIC
 		.
@@ -402,11 +397,10 @@ if (DO_PACKAGING)
 else()
   add_executable(${APP_NAME} WIN32 bitcoin.cpp)
 endif()
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  target_link_libraries(${APP_NAME} bitcoin-qt-base "-framework Foundation" "-framework CoreServices" "-framework AppKit")
-else()
-  target_link_libraries(${APP_NAME} bitcoin-qt-base)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+	target_sources(bitcoin-qt PRIVATE res/bitcoin-qt-res.rc)
 endif()
+target_link_libraries(bitcoin-qt bitcoin-qt-base)
 
 QT5_USE_Modules(${APP_NAME} Gui)
 QT5_USE_Modules(${APP_NAME} Core)
