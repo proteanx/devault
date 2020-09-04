@@ -8,10 +8,9 @@ mkdir -p depends/SDKs depends/sdk-sources
 
 if [[ $HOST = x86_64-apple-darwin14 ]]; then
   DOCKER_EXEC apt-get update
-  DOCKER_EXEC apt-get install software-properties-common -y
-  DOCKER_EXEC add-apt-repository ppa:hnakamur/libarchive -y
-  DOCKER_EXEC add-apt-repository ppa:hnakamur/libzstd -y
-  DOCKER_EXEC add-apt-repository ppa:hnakamur/cmake -y
+  DOCKER_EXEC apt-get install software-properties-common gnupg -y
+  wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc |     DOCKER_EXEC apt-key add -
+  DOCKER_EXEC apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 fi
 
 if [ -n "$OSX_SDK" -a ! -f depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz ]; then
