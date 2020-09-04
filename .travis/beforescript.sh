@@ -8,8 +8,9 @@ mkdir -p depends/SDKs depends/sdk-sources
 
 if [[ $HOST = x86_64-apple-darwin14 ]]; then
   DOCKER_EXEC apt-get update
-  DOCKER_EXEC apt-get install software-properties-common gnupg -y
-  DOCKER_EXEC wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | DOCKER_EXEC tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+  DOCKER_EXEC apt-get install apt-transport-https ca-certificates gnupg software-properties-common wget -y
+  DOCKER_EXEC wget https://apt.kitware.com/keys/kitware-archive-latest.asc
+  DOCKER_EXEC apt-key add kitware-archive-latest.asc
   DOCKER_EXEC apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 fi
 
